@@ -44,5 +44,9 @@ function onSubmit() {
 }
 
 function onDelete() {
-  console.log('test');
+  //this deletes the table row
+  //this selects the delete button
+  //.closest(tr) goes up the dom and looks for the closest tr
+  //.remove() then removes the full tr
+  $(this).closest('tr').remove();
 }
