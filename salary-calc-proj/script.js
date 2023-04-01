@@ -1,6 +1,8 @@
 console.log('js');
+//global variable of total yearly - stores yearly expenses
 //global variable of total monthly - stores total monthly cost
 //global variable of total montly string - used for formatting purposes
+let totalYearly = 0;
 let totalMonthly = 0;
 let totalMonthlyString;
 
@@ -43,10 +45,11 @@ function onSubmit() {
   //this adds the annualSalary to our global variable totalMonthly
   //turns annualSalary into a number
   //gives formatting to totalMonthly with .localString()
-  annualSalary = annualSalary.replace('$', '');
-  annualSalary = annualSalary.replace(',', '');
-  totalMonthly += Number(annualSalary);
-  totalMonthlyString = totalMonthly.toLocaleString('en-us');
+  annualSalary = annualSalary.replace(/\D/g, '');
+  console.log(annualSalary);
+  totalYearly = totalYearly + Number(annualSalary);
+  totalMonthly = totalYearly / 12;
+  totalMonthlyString = totalMonthly.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
   $('#total-monthly').text(`Total Monthly: $${totalMonthlyString}`);
 
   //this clears the form for next submission
@@ -64,19 +67,19 @@ function onDelete() {
   //this finds the annual salary of the deleted employee, then turns it into a number
   //this also formats the number to have commas with .tolocalestring()
   let deletedAnnualSalary = $(this).closest('tr').children('#annual-salary').text();
-  deletedAnnualSalary = deletedAnnualSalary.replace('$', '');
-  deletedAnnualSalary = deletedAnnualSalary.replace(',', '');
+  deletedAnnualSalary = deletedAnnualSalary.replace(/\D/g, '');
   deletedAnnualSalary = Number(deletedAnnualSalary);
 
   //this subtracts that deleted salary from total Monthly, then appends the page
-  totalMonthly -= deletedAnnualSalary;
-  totalMonthlyString = totalMonthly.toLocaleString('en-us');
+  totalYearly = totalYearly - deletedAnnualSalary;
+  totalMonthly = totalYearly / 12;
+  totalMonthly.toFixed(2);
+  totalMonthlyString = totalMonthly.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
   $('#total-monthly').text(`Total Monthly: $${totalMonthlyString}`);
 
   // this deletes the table row
   // this selects the delete button
   // .closest(tr) goes up the dom and looks for the closest tr
   // .remove() then removes the full tr
-
   $(this).closest('tr').remove();
 }
