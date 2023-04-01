@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="shortcut icon" href="" />
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="./script.js"></script>
+    <title>Document</title>
+  </head>
+  <header>
+    <!-- title of the html page -->
+    <h1>Salary Calculator</h1>
+  </header>
+  <body>
+    <main>
+      <!-- title for adding employ -->
+      <div class="table-container">
+        <h2>Add Employee</h2>
+        <form>
+          <!-- inputs for adding employee and submit button -->
+          <input id="first-name" type="text" placeholder="First Name" />
+          <input id="last-name" type="text" placeholder="Last Name" />
+          <input id="id" type="text" placeholder="ID" />
+          <input id="title" type="text" placeholder="Title" />
+          <input id="annual-salary" type="text" placeholder="Annual Salary" />
+          <button id="submit-button" class="submit-button">Submit</button>
+        </form>
+      </div>
+      <!-- title for table -->
+      <h2>Employees</h2>
+      <table>
+        <thead>
+          <!-- titles for each table column -->
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Annual Salary</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <!-- test info for styling, delete once script complete -->
+        <tr>
+          <td>Jen</td>
+          <td>Barber</td>
+          <td>4521</td>
+          <td>Team Lead</td>
+          <td>$80,000</td>
+          <td>delete button</td>
+        </tr>
+      </table>
+      <div class="total-monthly">Total Monthly: $number here</div>
+    </main>
+
+    <footer>
+      <div>Keegan Odell</div>
+    </footer>
+  </body>
+</html>

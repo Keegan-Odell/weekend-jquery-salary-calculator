@@ -1,0 +1,55 @@
+html {
+  background-color: #121212;
+}
+
+header {
+  text-align: center;
+  color: white;
+  margin-bottom: 70px;
+}
+
+h2 {
+  color: white;
+}
+
+input,
+.submit-button {
+  height: 20px;
+}
+
+.table-container {
+  margin-bottom: 60px;
+}
+
+table {
+  margin-bottom: 80px;
+  color: white;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: darkgray;
+  color: black;
+}
+
+td {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.total-monthly {
+  color: white;
+}
+
+footer {
+  margin-top: 60px;
+  color: white;
+}
