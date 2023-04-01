@@ -1,4 +1,6 @@
 console.log('js');
+//global variable of total monthly
+let totalMonthly = 0;
 
 $(document).ready(onReady);
 
@@ -30,23 +32,37 @@ function onSubmit() {
     <td>${lastName}</td>
     <td>${id}</td>
     <td>${title}</td>
-    <td>${annualSalary}</td>
+    <td id='annual-salary'>$${annualSalary}</td>
     <td><button id="delete-button">Delete</button></td>
   </tr>
   `);
 
+  //this adds the annualSalary to our global variable totalMonthly
+  totalMonthly += Number(annualSalary);
+  $('#total-monthly').text(`Total Monthly: $${totalMonthly}`);
+
   //testing these variables with console.logs
-  console.log(firstName);
-  console.log(lastName);
-  console.log(id);
-  console.log(title);
-  console.log(annualSalary);
+  // console.log(firstName);
+  // console.log(lastName);
+  // console.log(id);
+  // console.log(title);
+  // console.log(annualSalary);
 }
 
 function onDelete() {
-  //this deletes the table row
-  //this selects the delete button
-  //.closest(tr) goes up the dom and looks for the closest tr
-  //.remove() then removes the full tr
+  //this finds the annual salary of the deleted employee, then turns it into a number
+  let deletedAnnualSalary = $(this).closest('tr').children('#annual-salary').text();
+  deletedAnnualSalary = deletedAnnualSalary.replace('$', '');
+  deletedAnnualSalary = Number(deletedAnnualSalary);
+
+  //this subtracts that deleted salary from total Monthly, then appends the page
+  totalMonthly -= deletedAnnualSalary;
+  $('#total-monthly').text(`Total Monthly: $${totalMonthly}`);
+
+  // this deletes the table row
+  // this selects the delete button
+  // .closest(tr) goes up the dom and looks for the closest tr
+  // .remove() then removes the full tr
+
   $(this).closest('tr').remove();
 }
