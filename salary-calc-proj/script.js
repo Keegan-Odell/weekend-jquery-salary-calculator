@@ -3,7 +3,10 @@ console.log('js');
 $(document).ready(onReady);
 
 function onReady() {
+  //submit button functionality
   $('#submit-button').on('click', onSubmit);
+  //delete button functionality in table
+  $('#table-body').on('click', '#delete-button', onDelete);
 }
 
 //This will handle the submit button
@@ -28,7 +31,7 @@ function onSubmit() {
     <td>${id}</td>
     <td>${title}</td>
     <td>${annualSalary}</td>
-    <td><button>Delete</button></td>
+    <td><button id="delete-button">Delete</button></td>
   </tr>
   `);
 
@@ -38,4 +41,8 @@ function onSubmit() {
   console.log(id);
   console.log(title);
   console.log(annualSalary);
+}
+
+function onDelete() {
+  console.log('test');
 }
