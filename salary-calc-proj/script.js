@@ -2,8 +2,8 @@ console.log('js');
 //global variable of total yearly - stores yearly expenses
 //global variable of total monthly - stores total monthly cost
 //global variable of total montly string - used for formatting purposes
-let totalYearly = 0;
-let totalMonthly = 0;
+let totalYearly = 0.0;
+let totalMonthly = 0.0;
 let totalMonthlyString;
 
 $(document).ready(onReady);
@@ -46,7 +46,6 @@ function onSubmit() {
   //turns annualSalary into a number
   //gives formatting to totalMonthly with .localString()
   annualSalary = annualSalary.replace(/\D/g, '');
-  console.log(annualSalary);
   totalYearly = totalYearly + Number(annualSalary);
   totalMonthly = totalYearly / 12;
   totalMonthlyString = totalMonthly.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
@@ -73,7 +72,6 @@ function onDelete() {
   //this subtracts that deleted salary from total Monthly, then appends the page
   totalYearly = totalYearly - deletedAnnualSalary;
   totalMonthly = totalYearly / 12;
-  totalMonthly.toFixed(2);
   totalMonthlyString = totalMonthly.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
   $('#total-monthly').text(`Total Monthly: $${totalMonthlyString}`);
 
