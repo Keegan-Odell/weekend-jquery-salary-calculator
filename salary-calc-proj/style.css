@@ -53,3 +53,7 @@ footer {
   margin-top: 60px;
   color: white;
 }
+
+.over-budget {
+  color: red;
+}

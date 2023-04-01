@@ -2,8 +2,8 @@ console.log('js');
 //global variable of total yearly - stores yearly expenses
 //global variable of total monthly - stores total monthly cost
 //global variable of total montly string - used for formatting purposes
-let totalYearly = 0.0;
-let totalMonthly = 0.0;
+let totalYearly = 0;
+let totalMonthly = 0;
 let totalMonthlyString;
 
 $(document).ready(onReady);
@@ -48,18 +48,17 @@ function onSubmit() {
   annualSalary = annualSalary.replace(/\D/g, '');
   totalYearly = totalYearly + Number(annualSalary);
   totalMonthly = totalYearly / 12;
+  console.log(totalMonthly);
   totalMonthlyString = totalMonthly.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
-  $('#total-monthly').text(`Total Monthly: $${totalMonthlyString}`);
+  if (totalMonthly > 20000) {
+    $('#total-monthly').addClass('over-budget');
+    $('#total-monthly').text(`Total Monthly: $${totalMonthlyString} - you are over budget!`);
+  } else {
+    $('#total-monthly').text(`Total Monthly: $${totalMonthlyString}`);
+  }
 
   //this clears the form for next submission
   $('#form')[0].reset();
-
-  //testing these variables with console.logs
-  // console.log(firstName);
-  // console.log(lastName);
-  // console.log(id);
-  // console.log(title);
-  // console.log(annualSalary);
 }
 
 function onDelete() {
@@ -73,7 +72,12 @@ function onDelete() {
   totalYearly = totalYearly - deletedAnnualSalary;
   totalMonthly = totalYearly / 12;
   totalMonthlyString = totalMonthly.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
-  $('#total-monthly').text(`Total Monthly: $${totalMonthlyString}`);
+  if (totalMonthly <= 20000) {
+    $('#total-monthly').removeClass('over-budget');
+    $('#total-monthly').text(`Total Monthly: $${totalMonthlyString}`);
+  } else {
+    $('#total-monthly').text(`Total Monthly: $${totalMonthlyString}`);
+  }
 
   // this deletes the table row
   // this selects the delete button
