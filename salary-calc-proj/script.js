@@ -20,6 +20,18 @@ function onSubmit() {
   let title = $('#title').val();
   let annualSalary = $('#annual-salary').val();
 
+  //writing the inputs to the tbody
+  $('#table-body').append(`
+  <tr>
+    <td>${firstName}</td>
+    <td>${lastName}</td>
+    <td>${id}</td>
+    <td>${title}</td>
+    <td>${annualSalary}</td>
+    <td><button>Delete</button></td>
+  </tr>
+  `);
+
   //testing these variables with console.logs
   console.log(firstName);
   console.log(lastName);
