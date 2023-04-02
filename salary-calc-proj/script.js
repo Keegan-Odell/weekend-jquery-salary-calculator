@@ -29,7 +29,6 @@ function onSubmit() {
   let id = $('#id').val();
   if (isNaN(Number(id)) === true) {
     alert('please input a number in id');
-    $('#form')[0].reset();
     return;
   }
   let title = $('#title').val();
@@ -39,7 +38,6 @@ function onSubmit() {
   annualSalary = annualSalary.replace(/[,$]/g, '');
   if (isNaN((annualSalary = Number(annualSalary))) === true) {
     alert('Please enter a number under Annual Salary!');
-    $('#form')[0].reset();
     return;
   }
   annualSalary = annualSalary.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
