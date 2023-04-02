@@ -25,10 +25,24 @@ function onSubmit() {
   //these variables are the values of the inputs
   let firstName = $('#first-name').val();
   let lastName = $('#last-name').val();
+  //conditional check for id to make sure its a number and not a string
   let id = $('#id').val();
+  if (isNaN(Number(id)) === true) {
+    alert('please input a number in id');
+    $('#form')[0].reset();
+    return;
+  }
   let title = $('#title').val();
-  let annualSalary = Number($('#annual-salary').val());
-  annualSalary = annualSalary.toLocaleString('en-us');
+  //this is our formatting and conditional checking for annual salary
+  let annualSalary = $('#annual-salary').val();
+  annualSalary = annualSalary.replace(/[^0-9,$]/g, 'f');
+  annualSalary = annualSalary.replace(/[,$]/g, '');
+  if (isNaN((annualSalary = Number(annualSalary))) === true) {
+    alert('Please enter a number under Annual Salary!');
+    $('#form')[0].reset();
+    return;
+  }
+  annualSalary = annualSalary.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
 
   //writing the inputs to the tbody
   $('#table-body').append(`
@@ -45,10 +59,10 @@ function onSubmit() {
   //this adds the annualSalary to our global variable totalMonthly
   //turns annualSalary into a number
   //gives formatting to totalMonthly with .localString()
-  annualSalary = annualSalary.replace(/\D/g, '');
+  annualSalary = annualSalary.replace(/.\D/g, '');
+  console.log(annualSalary);
   totalYearly = totalYearly + Number(annualSalary);
   totalMonthly = totalYearly / 12;
-  console.log(totalMonthly);
   totalMonthlyString = totalMonthly.toLocaleString('en-us', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 });
   if (totalMonthly > 20000) {
     $('#total-monthly').addClass('over-budget');
@@ -65,8 +79,13 @@ function onDelete() {
   //this finds the annual salary of the deleted employee, then turns it into a number
   //this also formats the number to have commas with .tolocalestring()
   let deletedAnnualSalary = $(this).closest('tr').children('#annual-salary').text();
-  deletedAnnualSalary = deletedAnnualSalary.replace(/\D/g, '');
+  console.log(deletedAnnualSalary);
+  deletedAnnualSalary = deletedAnnualSalary.replace(/.\D/g, '');
+  deletedAnnualSalary = deletedAnnualSalary.replace(/[^0-9,$]/g, 'f');
+  deletedAnnualSalary = deletedAnnualSalary.replace(/[,$]/g, '');
+  console.log(deletedAnnualSalary);
   deletedAnnualSalary = Number(deletedAnnualSalary);
+  console.log(deletedAnnualSalary);
 
   //this subtracts that deleted salary from total Monthly, then appends the page
   totalYearly = totalYearly - deletedAnnualSalary;
