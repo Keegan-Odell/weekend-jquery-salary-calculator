@@ -27,8 +27,8 @@ function onSubmit() {
   let lastName = $('#last-name').val();
   //conditional check for id to make sure its a number and not a string
   let id = $('#id').val();
-  if (isNaN(Number(id)) === true) {
-    alert('please input a number in id');
+  if (isNaN(Number(id)) === true || Number(id) < 0) {
+    alert('please input a valid number in id');
     return;
   }
   let title = $('#title').val();
