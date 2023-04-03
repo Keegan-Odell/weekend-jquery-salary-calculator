@@ -18,7 +18,7 @@ function onReady() {
 //This will handle the submit button
 //It will take the values fromt he inputs
 //then write them into the table
-function onSubmit() {
+function onSubmit(event) {
   //prevents submit button from reloading page
   event.preventDefault();
 
